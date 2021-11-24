@@ -15,44 +15,41 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 @RestController
 public class LoginController {
     private final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-
     @Autowired
     StudentClient studentClient;
 
     @GetMapping("/login")
-    public ModelAndView loginPage(HttpSession session, HttpServletResponse response) {
-        if (session.getAttribute("student") != null || session.getAttribute("teacher") != null) {
-            try {
-                response.sendRedirect("/");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+    public ModelAndView loginPage(HttpSession session, HttpServletResponse response) throws IOException {
+        if (session.getAttribute("student") != null) {
+            response.sendRedirect("/welcome");
+        } else if (session.getAttribute("teacher") != null) {
+            response.sendRedirect("/");
         }
         return new ModelAndView("login");
     }
 
     @PostMapping("/studentLogin")
-    public void studentLogin(HttpServletRequest request, @RequestBody Student current) {
+    public String studentLogin(HttpServletRequest request, @RequestBody Student student) {
         JsonConverters converter = new JsonConverters();
-        Student student = converter.convertStudentToModel(studentClient.studentLogin(current));
-        if (student != null) {
+        Student loginStudent = converter.convertStudentToModel(studentClient.studentLogin(student));
+        if (loginStudent != null) {
             logger.info("Login Successful: Setting session for current Student.");
-            request.getSession().setAttribute("student", student);
+            request.getSession().setAttribute("student", loginStudent);
+            logger.info("Session set: " + loginStudent);
+            return "200 OK - Session set.";
         }
+        return "404 NOT FOUND - Session not set.";
     }
 
     @GetMapping("/testSession")
-    public Student testSession(HttpSession request) {
-
-        // TODO - Fix issue with nothing returned from HttpSession.
-
-        Student student = (Student) request.getAttribute("student");
-        System.out.println(student);
-        return (Student) request.getAttribute("student");
+    public Student testSession(HttpSession session) {
+        Student student = (Student) session.getAttribute("student");
+        return (Student) session.getAttribute("student");
     }
 }

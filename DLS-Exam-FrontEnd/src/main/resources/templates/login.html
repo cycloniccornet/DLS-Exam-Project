@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+
+    <link rel="stylesheet" th:href="@{/css/login.css}" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" crossorigin="anonymous"></script>
     <title>Login Page</title>
 </head>
 <body>
-<h1>Login here</h1>
+
+<div class="container" id="container_1">
+    <div class="row">
+        <div class="col-md-6">
+                <form onsubmit="preventDefault()" class="box" style="border-radius: 15px">
+                    <h1>Login</h1><br><br>
+                    <p class="text-muted"> Please enter your email and password!</p>
+                    <input type="email" name="email" placeholder="Email">
+                    <input type="password" name="password" placeholder="Password">
+                    <a class="forgot text-muted" href="#">Forgot password?</a>
+                    <input type="submit" name="" value="Login" href="#">
+                    <div class="col-md-12">
+                    </div>
+                </form>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
