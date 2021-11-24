@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Students</title>
+</head>
+<body>
+<h1>Students Page</h1>
+<div class="container"></div>
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Student Firstname</td>
+                <td>Student Lastname</td>
+                <td>Student Mail</td>
+                <td>Student Birthday</td>
+            </tr>
+        </thead>
+        <tr th:each="student : ${students}">
+            <td th:text="${student.getFirstName()}"></td>
+            <td th:text="${student.getLastName()}"></td>
+            <td th:text="${student.getMail()}"></td>
+            <td th:text="${student.getBirthdate()}"></td>
+        </tr>
+    </table>
+</body>
+</html>
