@@ -1,6 +1,6 @@
 package dls.examfrontend.controller;
 
-import dls.examfrontend.model.Student;
+import dls.examfrontend.dto.Student;
 import dls.examfrontend.service.JsonConverters;
 import dls.examfrontend.service.StudentClient;
 import org.springframework.beans.factory.annotation.Autowired;
