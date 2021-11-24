@@ -1,4 +1,4 @@
-package dls.examfrontend.model;
+package dls.examfrontend.dto;
 
 public class Student {
     private int studentId;

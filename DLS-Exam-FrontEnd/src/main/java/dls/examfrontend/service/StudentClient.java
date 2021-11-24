@@ -1,6 +1,6 @@
 package dls.examfrontend.service;
 
-import dls.examfrontend.model.Student;
+import dls.examfrontend.dto.Student;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import org.springframework.cloud.openfeign.FeignClient;
