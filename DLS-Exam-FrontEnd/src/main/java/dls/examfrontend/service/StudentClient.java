@@ -1,6 +1,7 @@
 package dls.examfrontend.service;
 
 import dls.examfrontend.dto.Student;
+import dls.examfrontend.dto.Teacher;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -26,4 +27,10 @@ public interface StudentClient {
 
     @RequestMapping(value = "/students/{id}", method = RequestMethod.PUT)
     JSONObject updateStudent(@PathVariable int id, @RequestBody Student student);
+
+    @RequestMapping(value = "/login/authenticateStudent", method = RequestMethod.POST)
+    JSONObject studentLogin(@RequestBody Student student);
+
+    @RequestMapping(value = "/login/authenticateTeacher", method = RequestMethod.POST)
+    JSONObject teacherLogin(@RequestBody Teacher teacher);
 }
