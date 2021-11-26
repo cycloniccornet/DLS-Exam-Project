@@ -39,11 +39,11 @@ public class LoginController {
                     logger.info("User status: Student with ID "+current.getStudentId()+" found - Login Successful!");
                     return current;
                 } else {
-                    throw new ResponseStatusException(HttpStatus.FORBIDDEN , "Password doesn't match the entered Email address.");
+                    return null;
                 }
             }
         }
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Email address not found.");
+        return null;
     }
 
     @PostMapping("/authenticateTeacher")
@@ -56,10 +56,10 @@ public class LoginController {
                     logger.info("User status: Teacher with ID "+current.getTeacherId()+" found - Login Successful!");
                     return current;
                 } else {
-                    throw new ResponseStatusException(HttpStatus.FORBIDDEN , "Password doesn't match the entered Email address.");
+                    return null;
                 }
             }
         }
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Email address not found.");
+        return null;
     }
 }

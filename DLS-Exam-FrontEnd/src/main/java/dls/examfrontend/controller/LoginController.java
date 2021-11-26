@@ -44,7 +44,7 @@ public class LoginController {
             loginStudent = converter.
                     convertStudentToModel(DBClient.authenticateStudent(converter.convertLoginToStudent(loginDTO)));
         } catch (Exception e) {
-            System.out.println("Error: "+e);
+
         }
         if (loginStudent != null) {
             logger.info("Student Login Successful: Setting session for current Student.");
