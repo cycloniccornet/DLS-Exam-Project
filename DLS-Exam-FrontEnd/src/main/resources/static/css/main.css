@@ -1,0 +1,13 @@
+body {
+    font-family: "Gotham A", "Gotham B", sans-serif !important;
+    background: rgb(3, 49, 138);
+    background: linear-gradient(180deg, rgba(252,176,69,1) 15%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 16%, rgb(3, 49, 138) 16%);
+    background-size: 100% 100%;
+    background-attachment: fixed;
+}
+
+h1 {
+    padding-bottom: 5%;
+    padding-top: 3%;
+    text-align: center;
+}
