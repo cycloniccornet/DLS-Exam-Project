@@ -1,6 +1,7 @@
 package dls.examfrontend.controller;
 
 import dls.examfrontend.dto.Student;
+import dls.examfrontend.dto.Teacher;
 import dls.examfrontend.service.JsonConverters;
 import dls.examfrontend.service.DBClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,20 @@ public class TestController {
     public ModelAndView getAllStudents() {
         ModelAndView modelAndView = new ModelAndView("students");
         modelAndView.addObject("students", converter.convertStudentToList(DBClient.allStudents()));
+        return modelAndView;
+    }
+
+
+    @GetMapping("/getTeachers")
+    public List<Teacher> getTeachers() {
+        List<Teacher> allTeachers = converter.convertTeacherToList(DBClient.getAllTeachers());
+        return allTeachers;
+    }
+
+    @GetMapping("/getAllTeachers")
+    public ModelAndView getAllTeachers() {
+        ModelAndView modelAndView = new ModelAndView("teachers");
+        modelAndView.addObject("teachers", converter.convertTeacherToList(DBClient.getAllTeachers()));
         return modelAndView;
     }
 }
