@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="file://$PROJECT_DIR$/DLS-Exam-FrontEnd" libraries="{all, bootstrap.bundle}" />
+    <file url="file://$PROJECT_DIR$/DLS-Exam-FrontEnd" libraries="{all, bootstrap, bootstrap.bundle, jquery}" />
   </component>
 </project>

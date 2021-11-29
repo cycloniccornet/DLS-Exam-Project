@@ -46,7 +46,7 @@ public class LoginController {
             logger.info("Student Login Successful: Setting session for current Student.");
             request.getSession().setAttribute("student", loginStudent);
             logger.info("Session set: " + loginStudent);
-            return new RedirectView("/testStudentSession");
+            return new RedirectView("/student");
         }
         Teacher loginTeacher = converter.
                 convertTeacherToModel(DBClient.authenticateTeacher(converter.convertLoginToTeacher(loginDTO)));
@@ -54,7 +54,7 @@ public class LoginController {
             logger.info("Teacher Login Successful: Setting session for current Teacher.");
             request.getSession().setAttribute("teacher", loginTeacher);
             logger.info("Session set: " + loginTeacher);
-            return new RedirectView("/testTeacherSession");
+            return new RedirectView("/teacher");
         }
         return new RedirectView("/login");
     }

@@ -1,13 +1,16 @@
 body {
     font-family: "Gotham A", "Gotham B", sans-serif !important;
-    background: rgb(3, 49, 138);
-    background: linear-gradient(180deg, rgba(252,176,69,1) 15%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 16%, rgb(3, 49, 138) 16%);
-    background-size: 100% 100%;
-    background-attachment: fixed;
+    background-color: #ef9930 !important;
 }
 
 h1 {
     padding-bottom: 5%;
     padding-top: 3%;
     text-align: center;
+}
+
+nav {
+    background: rgb(255,188,0);
+    background: linear-gradient(90deg, rgba(255,188,0,1) 0%, rgba(147,114,21,1) 25%, rgba(2,0,36,1) 50%, rgba(9,9,121,1) 75%, rgba(0,212,255,1) 100%);
+    border-bottom: 1px solid black;
 }

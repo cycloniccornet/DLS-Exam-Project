@@ -66,3 +66,8 @@
 .forgot {
     text-decoration: underline
 }
+
+body {
+    color: white;
+    font-weight: bold;
+}
