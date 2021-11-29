@@ -4,28 +4,25 @@ import dls.exambackend.model.Student;
 import dls.exambackend.model.Teacher;
 import dls.exambackend.repository.StudentRepository;
 import dls.exambackend.repository.TeacherRepository;
-import javassist.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
-import javax.security.auth.login.LoginException;
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
 @RequestMapping("/login")
 public class LoginController {
+
     private final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
     StudentRepository studentRepository;
+
     @Autowired
     TeacherRepository teacherRepository;
 
@@ -38,8 +35,6 @@ public class LoginController {
                 if (current.getPassword().equals(student.getPassword())) {
                     logger.info("User status: Student with ID "+current.getStudentId()+" found - Login Successful!");
                     return current;
-                } else {
-                    return null;
                 }
             }
         }
@@ -55,8 +50,6 @@ public class LoginController {
                 if (current.getPassword().equals(teacher.getPassword())) {
                     logger.info("User status: Teacher with ID "+current.getTeacherId()+" found - Login Successful!");
                     return current;
-                } else {
-                    return null;
                 }
             }
         }

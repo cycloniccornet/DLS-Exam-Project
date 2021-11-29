@@ -8,12 +8,13 @@ import dls.examfrontend.service.DBClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -39,13 +40,8 @@ public class LoginController {
 
     @PostMapping("/login")
     public RedirectView studentLogin(HttpServletRequest request, HttpServletResponse response, @ModelAttribute LoginDTO loginDTO) {
-        Student loginStudent = null;
-        try {
-            loginStudent = converter.
-                    convertStudentToModel(DBClient.authenticateStudent(converter.convertLoginToStudent(loginDTO)));
-        } catch (Exception e) {
-
-        }
+        Student loginStudent = converter.
+                convertStudentToModel(DBClient.authenticateStudent(converter.convertLoginToStudent(loginDTO)));
         if (loginStudent != null) {
             logger.info("Student Login Successful: Setting session for current Student.");
             request.getSession().setAttribute("student", loginStudent);
