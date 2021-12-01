@@ -4,6 +4,7 @@ import dls.examfrontend.dto.Student;
 import dls.examfrontend.dto.Teacher;
 import dls.examfrontend.service.Converter;
 import dls.examfrontend.service.DBClient;
+import net.minidev.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,19 +28,7 @@ public class TestController {
     }
 
     @GetMapping("/getAllStudents")
-    public ModelAndView getAllStudents() {
-        ModelAndView modelAndView = new ModelAndView("students");
-        modelAndView.addObject("students", converter.convertStudentToList(DBClient.getAllStudents()));
-        return modelAndView;
-    }
-
-    @GetMapping("/testTeacherSession")
-    public Teacher testTeacherSession(HttpSession session) {
-        return (Teacher) session.getAttribute("teacher");
-    }
-
-    @GetMapping("/testStudentSession")
-    public Student testStudentSession(HttpSession session) {
-        return (Student) session.getAttribute("student");
+    public JSONArray getAllStudents() {
+        return DBClient.getAllStudents();
     }
 }

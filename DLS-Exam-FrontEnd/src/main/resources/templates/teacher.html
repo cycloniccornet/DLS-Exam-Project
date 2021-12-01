@@ -12,28 +12,33 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark indigo">
-    <a class="navbar-brand" href="#">Navbar w/ text</a>
+    <a class="navbar-brand">CPHBusiness Role Call</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
             aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home
-                    <span class="sr-only">(current)</span>
-                </a>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
+                <a class="nav-link" href="#">Overview</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
+                <button class="nav-link" onclick="generateKey()">Generate Key</button>
             </li>
         </ul>
-        <span class="navbar-text white-text" th:text="'Logged in as: '+${teacher.firstName}+' '+${teacher.lastName}"></span>
+        <span class="navbar-text white-text" id="logged_text" th:text="'Logged in as '"></span><span id="logged_name" th:text="' '+${teacher.firstName}+' '+${teacher.lastName}"></span>
+        <span class="navbar-text white-text" id="logout"><a class="nav-link" th:href="@{/logout}">Logout</a></span>
     </div>
 </nav>
-<h1>Teacher Page</h1>
-</body>
+<h1 id="welcome" th:text="'Welcome back '+${teacher.firstName}"></h1>
+
+<div id="div_students">
+    <h1 id="div_h1"></h1>
+</div>
+
+
+<script src="../js/teacher.js"></script></body>
 </html>

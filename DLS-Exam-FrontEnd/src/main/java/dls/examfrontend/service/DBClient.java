@@ -80,6 +80,9 @@ public interface DBClient {
     @RequestMapping(value = "/sessions/{id}", method = RequestMethod.PUT)
     JSONObject updateSession(@PathVariable int id, @RequestBody Session session);
 
+    @RequestMapping(value = "/sessions/setSessionKey", method = RequestMethod.POST)
+    String setSessionKey();
+
     // Attendance endpoints.
 
     @RequestMapping(value = "/attendances/", method = RequestMethod.GET)

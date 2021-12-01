@@ -1,26 +1,22 @@
 package dls.examfrontend.controller;
 
+import dls.examfrontend.service.SessionChecker;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @RestController
-public class HomeController {
+public class StudentController {
 
     @GetMapping("/student")
-    public ModelAndView studentPage(HttpServletRequest request, HttpSession session) {
+    public ModelAndView studentPage(HttpServletRequest request, HttpSession session, HttpServletResponse response) {
         ModelAndView modelAndView = new ModelAndView("student");
         modelAndView.addObject(session.getAttribute("student"));
-        return modelAndView;
-    }
-
-    @GetMapping("/teacher")
-    public ModelAndView teacherPage(HttpServletRequest request, HttpSession session) {
-        ModelAndView modelAndView = new ModelAndView("teacher");
-        modelAndView.addObject(session.getAttribute("teacher"));
         return modelAndView;
     }
 

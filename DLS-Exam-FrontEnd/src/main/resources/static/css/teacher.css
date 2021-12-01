@@ -1,0 +1,12 @@
+#logout {
+    margin-left: 10px;
+}
+
+#logged_name {
+    color: #ef9930;
+    font-weight: bold;
+}
+
+#logged_text {
+    margin-right: 3px;
+}

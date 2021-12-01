@@ -30,9 +30,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public ModelAndView loginPage(HttpSession session, HttpServletResponse response) throws IOException {
-        if (session.getAttribute("student") != null || session.getAttribute("teacher") != null) {
-            response.sendRedirect("/");
-        }
+        loginCheck(session, response);
         ModelAndView modelAndView = new ModelAndView("login");
         modelAndView.addObject("student");
         return modelAndView;
@@ -60,16 +58,38 @@ public class LoginController {
     }
 
     @GetMapping("/")
-    public String main() {
+    public String main(HttpSession session, HttpServletResponse response) {
+        sessionCheck(session, response);
         return "Now you're here.";
     }
 
     @GetMapping("/logout")
-    public RedirectView logout(HttpServletRequest request) {
-        HttpSession session = request.getSession(false);
-        if (session != null) {
-            session.invalidate();
-        }
+    public RedirectView logout(HttpServletRequest request, HttpSession session, HttpServletResponse response) {
+        sessionCheck(session, response);
+        session = request.getSession(false);
+        session.invalidate();
         return new RedirectView("/login");
+    }
+
+    public void loginCheck(HttpSession session, HttpServletResponse response) {
+        try {
+            if (session.getAttribute("student") != null) {
+                response.sendRedirect("/student");
+            } else if (session.getAttribute("teacher") != null) {
+                response.sendRedirect("/teacher");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sessionCheck(HttpSession session, HttpServletResponse response) {
+        try {
+            if (session.getAttribute("student") == null && session.getAttribute("teacher") == null) {
+                response.sendRedirect("/login");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
