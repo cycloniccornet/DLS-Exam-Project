@@ -10,3 +10,27 @@
 #logged_text {
     margin-right: 3px;
 }
+
+#div_key {
+    font-size: 5em;
+    color: orange;
+    font-weight: bold;
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 10px;
+    background: #03318a;
+    margin-right: 35%;
+    margin-left: 35%;
+    letter-spacing: 8px;
+    margin-top: 10px;
+}
+
+#countdown {
+    text-align: center;
+    font-size: 3em;
+}
+
+#expire {
+    text-align: center;
+    margin-top: 5%;
+}

@@ -11,6 +11,7 @@
     <title>Teacher</title>
 </head>
 <body>
+<!-- NAVBAR start -->
 <nav class="navbar navbar-expand-lg navbar-dark indigo">
     <a class="navbar-brand">CPHBusiness Role Call</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
@@ -26,17 +27,33 @@
                 <a class="nav-link" href="#">Overview</a>
             </li>
             <li class="nav-item">
-                <button class="nav-link" onclick="generateKey()">Generate Key</button>
+                <a class="nav-link" href="#" onclick="generateKey()">Generate Key</a>
             </li>
         </ul>
         <span class="navbar-text white-text" id="logged_text" th:text="'Logged in as '"></span><span id="logged_name" th:text="' '+${teacher.firstName}+' '+${teacher.lastName}"></span>
         <span class="navbar-text white-text" id="logout"><a class="nav-link" th:href="@{/logout}">Logout</a></span>
     </div>
 </nav>
+<!-- NAVBAR end -->
+
 <h1 id="welcome" th:text="'Welcome back '+${teacher.firstName}"></h1>
 
-<div id="div_students">
+<div id="div_students" style="display: none">
     <h1 id="div_h1"></h1>
+    <h1 id="div_key"></h1>
+    <h4 id ="expire">Expires in</h4>
+    <div id="countdown"></div>
+    <button onclick="getSessionStudents()"></button>
+    <div id="students">
+        <table>
+            <thead>
+                <tr>First Name</tr>
+                <tr>Last Name</tr>
+                <tr>Mail</tr>
+            </thead>
+            <tbody id="student_table"></tbody>
+        </table>
+    </div>
 </div>
 
 
