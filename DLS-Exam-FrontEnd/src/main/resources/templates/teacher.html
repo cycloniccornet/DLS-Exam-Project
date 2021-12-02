@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/main.css}" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/teacher.css}" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" crossorigin="anonymous"></script>
+    <title>Teacher</title>
+</head>
+<body>
+<!-- NAVBAR start -->
+<nav class="navbar navbar-expand-lg navbar-dark indigo">
+    <a class="navbar-brand">CPHBusiness Role Call</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Overview</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="generateKey()">Generate Key</a>
+            </li>
+        </ul>
+        <span class="navbar-text white-text" id="logged_text" th:text="'Logged in as '"></span><span id="logged_name" th:text="' '+${teacher.firstName}+' '+${teacher.lastName}"></span>
+        <span class="navbar-text white-text" id="logout"><a class="nav-link" th:href="@{/logout}">Logout</a></span>
+    </div>
+</nav>
+<!-- NAVBAR end -->
+
+<h1 id="welcome" th:text="'Welcome back '+${teacher.firstName}"></h1>
+
+<div id="div_students" style="display: none">
+    <h1 id="div_h1"></h1>
+    <h1 id="div_key"></h1>
+    <h4 id ="expire">Expires in</h4>
+    <div id="countdown"></div>
+    <div id="students" class="container">
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Mail</th>
+            </tr>
+            </thead>
+            <tbody id="student_table"></tbody>
+        </table>
+    </div>
+</div>
+
+<script src="../js/teacher.js"></script></body>
+</html>

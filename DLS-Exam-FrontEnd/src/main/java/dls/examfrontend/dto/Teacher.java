@@ -7,16 +7,15 @@ public class Teacher {
     private String mail;
     private String password;
 
+    public Teacher() {
+    }
+
     public Teacher(int teacherId, String firstName, String lastName, String mail, String password) {
         this.teacherId = teacherId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.mail = mail;
         this.password = password;
-    }
-
-    public Teacher() {
-
     }
 
     public int getTeacherId() {
@@ -61,12 +60,12 @@ public class Teacher {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "studentId=" + teacherId +
+        return "Teacher{" +
+                "teacherId=" + teacherId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", mail='" + mail + '\'' +
-                ", password='" + password +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

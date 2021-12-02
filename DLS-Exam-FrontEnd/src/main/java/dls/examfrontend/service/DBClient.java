@@ -4,10 +4,7 @@ import dls.examfrontend.dto.*;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 @FeignClient("DLS-Exam-BackEnd")
 public interface DBClient {
@@ -28,6 +25,9 @@ public interface DBClient {
 
     @RequestMapping(value = "/students/{id}", method = RequestMethod.PUT)
     JSONObject updateStudent(@PathVariable int id, @RequestBody Student student);
+
+    @RequestMapping(value = "/students/getSessionStudents/{sessionKey}", method = RequestMethod.GET)
+    JSONArray getSessionStudents(@PathVariable String sessionKey);
 
     // Teacher endpoints.
 
@@ -80,6 +80,9 @@ public interface DBClient {
     @RequestMapping(value = "/sessions/{id}", method = RequestMethod.PUT)
     JSONObject updateSession(@PathVariable int id, @RequestBody Session session);
 
+    @RequestMapping(value = "/sessions/setSessionKey", method = RequestMethod.POST)
+    String setSessionKey();
+
     // Attendance endpoints.
 
     @RequestMapping(value = "/attendances/", method = RequestMethod.GET)
@@ -99,9 +102,9 @@ public interface DBClient {
 
     // Login endpoints.
 
-    @RequestMapping(value = "/authenticateStudent", method = RequestMethod.POST)
+    @RequestMapping(value = "/login/authenticateStudent", method = RequestMethod.POST)
     JSONObject authenticateStudent(@RequestBody Student student);
 
-    @RequestMapping(value = "/authenticateTeacher", method = RequestMethod.POST)
+    @RequestMapping(value = "/login/authenticateTeacher", method = RequestMethod.POST)
     JSONObject authenticateTeacher(@RequestBody Teacher teacher);
 }
