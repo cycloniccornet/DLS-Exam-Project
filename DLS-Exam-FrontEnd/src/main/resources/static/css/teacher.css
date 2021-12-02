@@ -1,0 +1,55 @@
+#logout {
+    margin-left: 10px;
+}
+
+#logged_name {
+    color: #ef9930;
+    font-weight: bold;
+}
+
+#logged_text {
+    margin-right: 3px;
+}
+
+#div_key {
+    font-size: 5em;
+    color: orange;
+    font-weight: bold;
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 10px;
+    background: #03318a;
+    margin-right: 35%;
+    margin-left: 35%;
+    letter-spacing: 8px;
+    margin-top: 10px;
+}
+
+#countdown {
+    text-align: center;
+    font-size: 3em;
+}
+
+#expire {
+    text-align: center;
+    margin-top: 2%;
+}
+
+.table {
+    margin-top: 2%;
+    padding-left: 30%;
+    padding-right: 30%;
+}
+
+#student_table {
+    background: wheat;
+    border: 3px solid black;
+}
+
+.thead-dark {
+    border: 3px solid black;
+}
+
+#student_table tr td{
+    border: 1px solid black;
+}

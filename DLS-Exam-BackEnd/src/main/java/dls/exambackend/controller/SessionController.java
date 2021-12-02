@@ -3,6 +3,7 @@ package dls.exambackend.controller;
 import dls.exambackend.model.Session;
 import dls.exambackend.repository.SessionRepository;
 import javassist.NotFoundException;
+import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.sql.Time;
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -69,5 +72,17 @@ public class SessionController {
         session.setSessionId(id);
         sessionRepository.save(session);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/setSessionKey")
+    public String setSessionKey() {
+        String generatedString = RandomStringUtils.randomAlphanumeric(8);
+        Date date = new Date(new java.util.Date().getTime());
+        sessionRepository.setSessionKey(
+                generatedString,
+                date,
+                new Time(date.getTime())
+        );
+        return generatedString;
     }
 }

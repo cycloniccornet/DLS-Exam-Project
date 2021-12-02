@@ -61,13 +61,17 @@ public class StudentController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateStudent(@RequestBody Student student, @PathVariable int id)
-    {
+    public ResponseEntity<Object> updateStudent(@RequestBody Student student, @PathVariable int id) {
         Optional<Student> studentOptional = studentRepository.findById(id);
         if (studentOptional.isEmpty())
             return ResponseEntity.notFound().build();
         student.setStudentId(id);
         studentRepository.save(student);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/getSessionStudents/{sessionKey}")
+    public List<Student> getSessionStudents(@PathVariable String sessionKey) {
+        return studentRepository.getSessionStudents(sessionKey);
     }
 }
