@@ -26,7 +26,7 @@ public interface DBClient {
     @RequestMapping(value = "/students/{id}", method = RequestMethod.PUT)
     JSONObject updateStudent(@PathVariable int id, @RequestBody Student student);
 
-    @RequestMapping(value = "/getSessionStudents/{sessionKey}", method = RequestMethod.GET)
+    @RequestMapping(value = "/students/getSessionStudents/{sessionKey}", method = RequestMethod.GET)
     JSONArray getSessionStudents(@PathVariable String sessionKey);
 
     // Teacher endpoints.

@@ -3,6 +3,7 @@
 })();
 
 function generateKey() {
+    $('#welcome').remove();
     $('#div_students').css('display', 'block');
     console.log("Generate Key function called.")
     fetch("/setSessionKey", {
@@ -25,6 +26,7 @@ function generateKey() {
             if (distance < 0) {
                 clearInterval(x);
                 $("#countdown").empty().append("Expired!");
+                // TODO - Create and call reset sessionKey function.
             }
             getSessionStudents(key);
         }, 1000);
@@ -32,12 +34,19 @@ function generateKey() {
 }
 
 function getSessionStudents(sessionKey) {
+
     fetch('/getSessionStudents/'+sessionKey)
         .then(result => result.json())
         .then(students => {
-            console.log(students);
-            // $('#student_table').empty().append(
-            //    '<tr><td>'+students[0].firstname+'</td></tr>'
-            // )
+            console.log(students)
+            $('#student_table').empty()
+            for (let i = 0; i < students.length; i++) {
+                $('#student_table').append(
+                    '<tr>' +
+                    '<td>'+students[i].firstName+'</td>' +
+                    '<td>'+students[i].lastName+'</td>' +
+                    '<td>'+students[i].mail+'</td></tr>'
+                )
+            }
         })
 }

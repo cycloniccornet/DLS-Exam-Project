@@ -32,5 +32,24 @@
 
 #expire {
     text-align: center;
-    margin-top: 5%;
+    margin-top: 2%;
+}
+
+.table {
+    margin-top: 2%;
+    padding-left: 30%;
+    padding-right: 30%;
+}
+
+#student_table {
+    background: wheat;
+    border: 3px solid black;
+}
+
+.thead-dark {
+    border: 3px solid black;
+}
+
+#student_table tr td{
+    border: 1px solid black;
 }
