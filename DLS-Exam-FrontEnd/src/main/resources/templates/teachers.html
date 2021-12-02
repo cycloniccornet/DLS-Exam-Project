@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Students</title>
+</head>
+<body>
+<h1>Students Page</h1>
+<div class="container"></div>
+<table class="table">
+    <thead>
+    <tr>
+        <td>Teacher Firstname</td>
+        <td>Teacher Lastname</td>
+        <td>Teacher Mail</td>
+    </tr>
+    </thead>
+    <tr th:each="teacher : ${teachers}">
+        <td th:text="${teacher.getFirstName()}"></td>
+        <td th:text="${teacher.getLastName()}"></td>
+        <td th:text="${teacher.getMail()}"></td>
+
+    </tr>
+</table>
+</body>
+</html>

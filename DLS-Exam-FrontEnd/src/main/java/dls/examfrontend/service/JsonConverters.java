@@ -3,6 +3,7 @@ package dls.examfrontend.service;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import dls.examfrontend.dto.Student;
+import dls.examfrontend.dto.Teacher;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 
@@ -21,5 +22,11 @@ public class JsonConverters {
         Gson gson = new Gson();
         Type type = new TypeToken<Student>(){}.getType();
         return gson.fromJson(String.valueOf(student), type);
+    }
+
+    public List<Teacher> convertTeacherToList(JSONArray teachers) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<Teacher>>(){}.getType();
+        return gson.fromJson(String.valueOf(teachers), type);
     }
 }
