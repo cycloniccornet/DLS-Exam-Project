@@ -19,4 +19,13 @@ public interface SessionRepository extends JpaRepository<Session, Integer> {
             "WHERE session_date = ?2 \n" +
             "AND (?3 BETWEEN schedule_start AND schedule_end);", nativeQuery = true)
     void setSessionKey(String sessionKey, Date date, Time currentTime);
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE session \n" +
+            "SET session_key = null WHERE session_date = ?1 " +
+            "AND (?2 BETWEEN schedule_start AND schedule_end)", nativeQuery = true)
+    void resetSessionKey(Date date, Time currentTime);
+
+
 }

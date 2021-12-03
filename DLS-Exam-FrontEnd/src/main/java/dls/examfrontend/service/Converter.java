@@ -24,6 +24,13 @@ public class Converter {
         Type type = new TypeToken<Student>(){}.getType();
         return gson.fromJson(String.valueOf(student), type);
     }
+
+    public List<Teacher> convertTeacherToList(JSONArray teachers) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<Teacher>>(){}.getType();
+        return gson.fromJson(String.valueOf(teachers), type);
+    }
+
     public Teacher convertTeacherToModel(JSONObject teacher) {
         Gson gson = new Gson();
         Type type = new TypeToken<Teacher>(){}.getType();

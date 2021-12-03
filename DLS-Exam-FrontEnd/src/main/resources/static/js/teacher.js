@@ -26,7 +26,8 @@ function generateKey() {
             if (distance < 0) {
                 clearInterval(x);
                 $("#countdown").empty().append("Expired!");
-                // TODO - Create and call reset sessionKey function.
+                resetSessionKey();
+                console.log("Duplication?")
             }
             getSessionStudents(key);
         }, 1000);
@@ -49,4 +50,11 @@ function getSessionStudents(sessionKey) {
                 )
             }
         })
+}
+
+function resetSessionKey() {
+    fetch('/resetSessionKey')
+        .then(result =>
+            console.log("Session key has been reset.")
+        )
 }

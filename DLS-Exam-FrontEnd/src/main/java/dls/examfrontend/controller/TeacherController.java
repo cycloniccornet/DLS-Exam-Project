@@ -5,6 +5,8 @@ import dls.examfrontend.service.Converter;
 import dls.examfrontend.service.DBClient;
 import net.minidev.json.JSONArray;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +26,8 @@ public class TeacherController {
     DBClient dbClient;
 
     Converter converter = new Converter();
+    private final Logger logger = LoggerFactory.getLogger(LoginController.class);
+
 
     @GetMapping("/teacher")
     public ModelAndView teacherPage(HttpServletRequest request, HttpSession session, HttpServletResponse response) {
@@ -34,13 +38,19 @@ public class TeacherController {
 
     @PostMapping("/setSessionKey")
     public String setSessionKey() {
-        String status = dbClient.setSessionKey();
-        System.out.println(status);
-        return status;
+        logger.info("Generated key for current session.");
+        return dbClient.setSessionKey();
+    }
+
+    @PostMapping("/resetSessionKey")
+    public void resetSessionKey() {
+        dbClient.resetSessionKey();
+        logger.info("Current session key reset.");
     }
 
     @GetMapping("/getSessionStudents/{sessionKey}")
     public List<Student> getSessionStudents(@PathVariable String sessionKey) {
+        logger.info("Getting active students from current session.");
         return converter.convertStudentToList(dbClient.getSessionStudents(sessionKey));
     }
 }
