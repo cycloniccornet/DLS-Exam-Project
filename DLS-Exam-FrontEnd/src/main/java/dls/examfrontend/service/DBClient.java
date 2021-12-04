@@ -83,6 +83,9 @@ public interface DBClient {
     @RequestMapping(value = "/sessions/setSessionKey", method = RequestMethod.POST)
     String setSessionKey();
 
+    @RequestMapping(value = "/sessions/resetSessionKey", method = RequestMethod.POST)
+    void resetSessionKey();
+
     // Attendance endpoints.
 
     @RequestMapping(value = "/attendances/", method = RequestMethod.GET)
@@ -99,6 +102,9 @@ public interface DBClient {
 
     @RequestMapping(value = "/attendances/{id}", method = RequestMethod.PUT)
     JSONObject updateAttendance(@PathVariable int id, @RequestBody Attendance attendance);
+
+    @RequestMapping(value = "/attendances/enterSessionKey", method = RequestMethod.POST)
+    String enterSessionKey(@RequestParam String key, @RequestParam int student_id);
 
     // Login endpoints.
 

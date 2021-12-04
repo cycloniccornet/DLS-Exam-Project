@@ -85,4 +85,10 @@ public class SessionController {
         );
         return generatedString;
     }
+
+    @PostMapping("/resetSessionKey")
+    public void resetSessionKey() {
+        Date date = new Date(new java.util.Date().getTime());
+        sessionRepository.resetSessionKey(date, new Time(date.getTime()));
+    }
 }

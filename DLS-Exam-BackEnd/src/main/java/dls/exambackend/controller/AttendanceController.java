@@ -70,4 +70,10 @@ public class AttendanceController {
         attendanceRepository.save(attendance);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/enterSessionKey")
+    public String enterSessionKey(@RequestParam String key, @RequestParam int id) {
+        attendanceRepository.enterSessionKey(key, id);
+        return "200 - OK";
+    }
 }
