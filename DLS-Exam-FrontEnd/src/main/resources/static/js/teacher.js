@@ -50,3 +50,13 @@ function getSessionStudents(sessionKey) {
             }
         })
 }
+
+function getStatistics() {
+    console.log("Link activated");
+    $('#Welcome').remove();
+    console.log("getStatistic has been called.");
+    fetch("/getDataOnStudents")
+        .then(result => result.json())
+        .then(result => console.log(result))
+
+}

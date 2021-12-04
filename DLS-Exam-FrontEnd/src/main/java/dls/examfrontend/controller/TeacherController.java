@@ -32,6 +32,15 @@ public class TeacherController {
         return modelAndView;
     }
 
+    @GetMapping("/getSessionStudents/{sessionKey}")
+    public List<Student> getSessionStudents(@PathVariable String sessionKey) {
+        return converter.convertStudentToList(dbClient.getSessionStudents(sessionKey));
+    }
+
+    //@GetMapping("/getDataOnStudents")
+
+
+
     @PostMapping("/setSessionKey")
     public String setSessionKey() {
         String status = dbClient.setSessionKey();
@@ -39,8 +48,4 @@ public class TeacherController {
         return status;
     }
 
-    @GetMapping("/getSessionStudents/{sessionKey}")
-    public List<Student> getSessionStudents(@PathVariable String sessionKey) {
-        return converter.convertStudentToList(dbClient.getSessionStudents(sessionKey));
-    }
 }
