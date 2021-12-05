@@ -2,9 +2,7 @@ package dls.examfrontend.service;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
-import dls.examfrontend.dto.LoginDTO;
-import dls.examfrontend.dto.Student;
-import dls.examfrontend.dto.Teacher;
+import dls.examfrontend.dto.*;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 
@@ -49,5 +47,23 @@ public class Converter {
         teacher.setMail(loginDTO.getMail());
         teacher.setPassword(loginDTO.getPassword());
         return teacher;
+    }
+
+    public List<Subject> convertSubjectToList(JSONArray subjects) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<Subject>>(){}.getType();
+        return gson.fromJson(String.valueOf(subjects), type);
+    }
+
+    public List<Attendance> convertAttendanceToList(JSONArray attendances) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<Attendance>>(){}.getType();
+        return gson.fromJson(String.valueOf(attendances), type);
+    }
+
+    public List<Session> convertSessionToList(JSONArray allSessions) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<Session>>(){}.getType();
+        return gson.fromJson(String.valueOf(allSessions), type);
     }
 }

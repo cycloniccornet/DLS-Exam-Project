@@ -9,9 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface AttendanceRepository extends JpaRepository<Attendance, Integer> {
+
     @Transactional
     @Modifying
     @Query(value = "INSERT INTO attendance (session_id, student_id, is_present) VALUES " +
             "((SELECT session_id FROM session WHERE session_key = ?1) , ?2, 1)", nativeQuery = true)
-    void enterSessionKey(String sessionKey, int student_id);
+    String enterSessionKey(String sessionKey, int student_id);
 }

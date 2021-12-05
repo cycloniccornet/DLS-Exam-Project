@@ -1,8 +1,11 @@
 package dls.exambackend.controller;
 
 import dls.exambackend.model.Attendance;
+import dls.exambackend.model.Session;
 import dls.exambackend.repository.AttendanceRepository;
 import javassist.NotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
@@ -24,6 +27,8 @@ public class AttendanceController {
 
     @Autowired
     AttendanceRepository attendanceRepository;
+
+    private final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @GetMapping("/")
     public List<Attendance> getAllAttendances() {
@@ -72,8 +77,10 @@ public class AttendanceController {
     }
 
     @PostMapping("/enterSessionKey")
-    public String enterSessionKey(@RequestParam String key, @RequestParam int id) {
-        attendanceRepository.enterSessionKey(key, id);
+    public String enterSessionKey(@RequestParam String key, @RequestParam int student_id) {
+        logger.info("Student with id "+student_id+" entered session key.");
+        String result = attendanceRepository.enterSessionKey(key, student_id);
+        System.out.println(result);
         return "200 - OK";
     }
 }

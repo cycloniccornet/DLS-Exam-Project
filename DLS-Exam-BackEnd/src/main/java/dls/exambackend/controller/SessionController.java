@@ -4,6 +4,8 @@ import dls.exambackend.model.Session;
 import dls.exambackend.repository.SessionRepository;
 import javassist.NotFoundException;
 import org.apache.commons.lang.RandomStringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
@@ -27,6 +29,8 @@ public class SessionController {
 
     @Autowired
     SessionRepository sessionRepository;
+
+    private final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @GetMapping("/")
     public List<Session> getAllSessions() {

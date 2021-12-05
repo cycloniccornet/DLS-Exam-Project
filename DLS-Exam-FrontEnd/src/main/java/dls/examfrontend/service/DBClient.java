@@ -106,6 +106,9 @@ public interface DBClient {
     @RequestMapping(value = "/attendances/enterSessionKey", method = RequestMethod.POST)
     String enterSessionKey(@RequestParam String key, @RequestParam int student_id);
 
+    @RequestMapping(value = "/attendances/getAttendanceBySubjectId", method = RequestMethod.GET)
+    JSONArray getAllAttendancesBySubjectId(@RequestParam int subject_id, @RequestParam int student_id);
+
     // Login endpoints.
 
     @RequestMapping(value = "/login/authenticateStudent", method = RequestMethod.POST)

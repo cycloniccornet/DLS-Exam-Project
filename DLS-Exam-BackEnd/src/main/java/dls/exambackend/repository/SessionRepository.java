@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 
 @Repository
 public interface SessionRepository extends JpaRepository<Session, Integer> {
@@ -26,6 +27,4 @@ public interface SessionRepository extends JpaRepository<Session, Integer> {
             "SET session_key = null WHERE session_date = ?1 " +
             "AND (?2 BETWEEN schedule_start AND schedule_end)", nativeQuery = true)
     void resetSessionKey(Date date, Time currentTime);
-
-
 }
