@@ -41,10 +41,6 @@ public class TeacherController {
         return converter.convertStudentToList(dbClient.getSessionStudents(sessionKey));
     }
 
-    //@GetMapping("/getDataOnStudents")
-
-
-
     @PostMapping("/setSessionKey")
     public String setSessionKey() {
         logger.info("Generated key for current session.");
@@ -57,12 +53,4 @@ public class TeacherController {
         logger.info("Current session key reset.");
     }
 
-<<<<<<< HEAD
-=======
-    @GetMapping("/getSessionStudents/{sessionKey}")
-    public List<Student> getSessionStudents(@PathVariable String sessionKey) {
-        logger.info("Getting active students from current session.");
-        return converter.convertStudentToList(dbClient.getSessionStudents(sessionKey));
-    }
->>>>>>> cc1fab6ef1c79a1a47073263fefb7f26a86e4a60
 }

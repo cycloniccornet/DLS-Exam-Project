@@ -1,3 +1,5 @@
+let attended; let absent; let toCome;
+
 
 function sendSessionKey() {
     const key = $('#sessionKey').val()
@@ -23,21 +25,22 @@ function showSessionInputField() {
 }
 
 function showOverview() {
-    $('#welcome').empty().append('Choose a subject')
+    $('#welcome').empty().append('Choose a subject');
+    $('#input_session_key').empty();
     fetch('/getAllSubjects')
         .then(result => result.json())
         .then(subjects => {
             for (let i = 0; i < subjects.length; i++) {
                 $('#input_session_key').append(
-                    '<button class="btn btn-primary" style="padding: 10px" onclick="getSubjectWithId('+subjects[i].subjectId+')">'+subjects[i].subjectName+'</button>'
+                    '<button class="btn btn-primary" style="margin-right: 10px" onclick="getSubjectWithId('+subjects[i].subjectId+')">'+subjects[i].subjectName+'</button>'
                 )
             }
         })
 }
 
 function getSubjectWithId(subjectId) {
-    $('#session_table').empty();
-    $('#session_table').css('text-align', 'center').css('padding-left', '20%').css('padding-right', '20%').css('padding-top', '2%')
+    const today = new Date();
+    const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     fetch('/getAttendanceBySubjectId/'+subjectId)
         .then(result => result.json())
         .then(studentSessions => {
@@ -46,10 +49,12 @@ function getSubjectWithId(subjectId) {
             fetch('/getAllSessionsBySubjectId/'+subjectId)
                 .then(result => result.json())
                 .then(allSessions => {
+                    attended = studentSessions.length;
+                    absent = allSessions.length - studentSessions.length;
                     // All sessions from current Subject.
-                    console.log(allSessions)
-                    $('#session_table').append(
-                        '<table class="table table-bordered">' +
+                    console.log(allSessions);
+                    $('#session_table').empty().append(
+                        '<table class="table table-bordered" style="border: 2px solid black">' +
                         '   <thead class="thead-dark">' +
                         '       <th>Session Date</th>' +
                         '       <th>Session Start Time</th>' +
@@ -60,15 +65,49 @@ function getSubjectWithId(subjectId) {
                     )
                     for (let i = 0; i < allSessions.length; i++) {
                         $('#table_body').append(
-                            '<tr id="session['+allSessions[i].sessionId+']" style="background: red">' +
+                            '<tr id="session['+allSessions[i].sessionId+']" style="background: #da0707">' +
                             '   <td>'+allSessions[i].sessionDate+'</td><td>'+allSessions[i].scheduleStart+'</td><td>'+allSessions[i].scheduleEnd+'</td>' +
                             '</tr>'
                         )
+                        const sessionDate = new Date(allSessions[i].sessionDate)
+                        if (sessionDate > today){
+                            console.log("1 - Kommer du her?")
+                            document.getElementById('session['+allSessions[i].sessionId+']').style.background = 'grey';
+                            toCome++;
+                            absent--;
+                        }
                     }
-                    for (let j = 0; j < studentSessions.length; j++) {
-                        document.getElementById('session['+studentSessions[j].sessionId+']').style.background = 'green';
-                        $('#session['+studentSessions[j].sessionId+']').css("background", "green");
+                    for (let i = 0; i < studentSessions.length; i++) {
+                        console.log("2 - Kommer du her?")
+                        document.getElementById('session['+studentSessions[i].sessionId+']').style.background = 'green';
+                        $('#session['+studentSessions[i].sessionId+']').css("background", "green");
+                    }
+                    Array.prototype.reduce = undefined;
+                    google.charts.load('current', {'packages':['corechart']});
+                    google.charts.setOnLoadCallback(drawChart);
+
+                    function drawChart() {
+
+                        const data = google.visualization.arrayToDataTable([
+                            ['Status', 'Hours per Day'],
+                            ['Attended', attended],
+                            ['Absent', absent],
+                            ['To Come', toCome]
+                        ]);
+
+                        const options = {
+                            title: 'Oversigt over fravær i procent.',
+                            slides: [{color: 'green'}, {color: 'red'}, {color: 'grey'}],
+                            backgroundColor: 'transparent',
+                            fontSize: '13',
+                            fontName: 'Bahnschrift',
+                            width: '525',
+                        };
+
+                        const chart = new google.visualization.PieChart(document.getElementById('pieChart'));
+                        chart.draw(data, options);
                     }
                 })
         })
 }
+

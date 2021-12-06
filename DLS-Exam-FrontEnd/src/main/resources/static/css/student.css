@@ -10,3 +10,15 @@
 #logged_text {
     margin-right: 3px;
 }
+
+#session_table {
+    text-align: center;
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-top: 2%;
+}
+
+#pieChart {
+    padding-top: 2%;
+    text-align: center;
+}
