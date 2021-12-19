@@ -43,8 +43,7 @@ public class StudentController {
     @PostMapping("/enterSessionKey/{key}")
     public String enterSessionKey(@PathVariable String key, HttpSession session) {
         Student student = (Student) session.getAttribute("student");
-        String result = dbClient.enterSessionKey(key, student.getStudentId());
-        return result;
+        return dbClient.enterSessionKey(key, student.getStudentId());
     }
 
     @GetMapping("/getAllSubjects")

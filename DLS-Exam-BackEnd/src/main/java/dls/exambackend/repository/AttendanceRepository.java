@@ -14,5 +14,5 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Integer>
     @Modifying
     @Query(value = "INSERT INTO attendance (session_id, student_id, is_present) VALUES " +
             "((SELECT session_id FROM session WHERE session_key = ?1) , ?2, 1)", nativeQuery = true)
-    String enterSessionKey(String sessionKey, int student_id);
+    void enterSessionKey(String sessionKey, int student_id);
 }

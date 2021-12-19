@@ -79,8 +79,7 @@ public class AttendanceController {
     @PostMapping("/enterSessionKey")
     public String enterSessionKey(@RequestParam String key, @RequestParam int student_id) {
         logger.info("Student with id "+student_id+" entered session key.");
-        String result = attendanceRepository.enterSessionKey(key, student_id);
-        System.out.println(result);
-        return "200 - OK";
+        attendanceRepository.enterSessionKey(key, student_id);
+        return "Success";
     }
 }

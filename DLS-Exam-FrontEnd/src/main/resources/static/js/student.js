@@ -17,14 +17,16 @@ function sendSessionKey() {
 }
 
 function showSessionInputField() {
+    $('#session_table').empty();
     $('#welcome').empty();
-    $('#input_session_key').append('<form action="#">\n' +
+    $('#input_session_key').empty().append('<form action="#">\n' +
         '    <input type="text" name="sessionKey" id="sessionKey"><br>\n' +
         '    <button type="submit" onclick="sendSessionKey()">Validate key</button>\n' +
         '</form>')
 }
 
 function showOverview() {
+
     $('#welcome').empty().append('Choose a subject');
     $('#input_session_key').empty();
     fetch('/getAllSubjects')
